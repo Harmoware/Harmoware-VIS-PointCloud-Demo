@@ -24,6 +24,7 @@ class App extends Container {
   componentDidMount(){
     super.componentDidMount();
     const { actions } = this.props;
+    actions.setInitialViewChange(false);
     actions.setSecPerHour(3600);
     actions.setLeading(3);
     actions.setTrailing(3);
