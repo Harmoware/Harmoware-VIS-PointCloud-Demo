@@ -1,0 +1,29 @@
+@import 'harmoware-vis/scss/harmoware.scss';
+
+div.harmovis_controller {
+  @extend .harmovis_controller;
+  width: 260px;
+  ul {
+    @extend ul.flex_list;
+  }
+  ol {
+    padding-inline-start: 10px;
+  }
+  li.none_display {
+    width: 0%;  
+    display: none;
+  }
+  button.harmovis_button {
+    width: 100%;  
+  }
+  button.size_button {
+    @extend button.harmovis_button;
+    font-size: 10px; 
+    padding: 3px 6px;
+    width: auto;  
+  }
+}
+div.harmovis_footer {
+  @extend .harmovis_footer;
+  left: 100px;
+}

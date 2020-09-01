@@ -1,0 +1,30 @@
+{
+  "name": "harmoware-vis-pointcloud-demo",
+  "version": "1.0.0",
+  "description": "harmoware-vis-pointcloud-demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --port 3030 --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "harmoware-vis-pointcloud-demo",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@loaders.gl/obj": "^2.2.8",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "harmoware-vis": "^1.6.19",
+    "node-sass": "^4.14.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
