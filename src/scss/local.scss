@@ -27,3 +27,8 @@ div.harmovis_footer {
   @extend .harmovis_footer;
   left: 100px;
 }
+input.harmovis_input_number[type="number"]{
+  @extend .harmovis_input_number;
+  text-align: right;
+  width: 100%;
+}

@@ -33,12 +33,25 @@ export default class Controller extends React.Component {
                 </div>
             </li>
             <li className="flex_column">
-              longitude:<input type="number" value={position[0]} step="0.0001" onChange={this.updatePos.bind(this,0)} required/>
-              latitude:<input type="number" value={position[1]} step="0.0001" onChange={this.updatePos.bind(this,1)} required/>
-              altitude:<input type="number" value={position[2]} step="0.1" onChange={this.updatePos.bind(this,2)} required/>
-              pitch:<input type="number" value={getOrientation[0]} step="1" onChange={this.updateOri.bind(this,0)} required/>
-              yaw:<input type="number" value={getOrientation[1]} step="1" onChange={this.updateOri.bind(this,1)} required/>
-              roll:<input type="number" value={getOrientation[2]} step="1" onChange={this.updateOri.bind(this,2)} required/>
+              <ol><li className="flex_row">
+              longitude:<input type="number" value={position[0]} step="0.0001" min="-180" max="180"
+              onChange={this.updatePos.bind(this,0)} required className="harmovis_input_number"/>
+              </li><li className="flex_row">
+              latitude:<input type="number" value={position[1]} step="0.0001" min="-90" max="90"
+              onChange={this.updatePos.bind(this,1)} required className="harmovis_input_number"/>
+              </li><li className="flex_row">
+              altitude:<input type="number" value={position[2]} step="0.1"
+              onChange={this.updatePos.bind(this,2)} required className="harmovis_input_number"/>
+              </li><li className="flex_row">
+              pitch:<input type="number" value={getOrientation[0]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,0)} required className="harmovis_input_number"/>
+              </li><li className="flex_row">
+              yaw:<input type="number" value={getOrientation[1]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,1)} required className="harmovis_input_number"/>
+              </li><li className="flex_row">
+              roll:<input type="number" value={getOrientation[2]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,2)} required className="harmovis_input_number"/>
+              </li></ol>
             </li>
             <li className="flex_row">
                 <div className="harmovis_input_button_column">
