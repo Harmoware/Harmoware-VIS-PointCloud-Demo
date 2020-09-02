@@ -22,6 +22,10 @@ export default class Controller extends React.Component {
     getOrientation[idx] = Number(e.target.value);
     updateState({getOrientation})
   }
+  setViewport() {
+    const { actions, position:[longitude, latitude] } = this.props;
+    actions.setViewport({longitude, latitude});
+  }
 
   render() {
     const { actions, inputFileName, animatePause, animateReverse, viewport, leading,
@@ -59,6 +63,10 @@ export default class Controller extends React.Component {
               <InputNumber caption="roll:" value={getOrientation[2]} step="1" min="-180" max="180"
               onChange={this.updateOri.bind(this,2)}/>
               </li></ol>
+            </li>
+            <li className="flex_row">
+              <button onClick={this.setViewport.bind(this)}
+              className="harmovis_button">Move to object position</button>
             </li>
             <li className="flex_row">
                 <div className="harmovis_input_button_column">
