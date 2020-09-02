@@ -2,13 +2,13 @@
 
 div.harmovis_controller {
   @extend .harmovis_controller;
-  width: 260px;
+  width: 230px;
   ul {
     @extend ul.flex_list;
   }
   ol {
-    padding-inline-start: 15px;
-    padding-inline-end: 15px;
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
   }
   li.none_display {
     width: 0%;  

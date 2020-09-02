@@ -78,6 +78,7 @@ class App extends Container {
           <HarmoVisLayers
             viewport={viewport} actions={actions} visible={false}
             layers={[
+                this.state.objFileData ?
                 new SimpleMeshLayer({
                   id:'SimpleMeshLayer',
                   data:[{position:this.state.position}],
@@ -85,7 +86,7 @@ class App extends Container {
                   getColor:this.state.getColor,
                   getOrientation:this.state.getOrientation,
                   opacity:this.state.opacity,
-                }),
+                }):null,
                 PointCloudData.length > 0 ? this.getPointCloudLayer(PointCloudData):null,
             ]}
           />

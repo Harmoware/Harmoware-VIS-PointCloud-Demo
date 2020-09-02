@@ -23,12 +23,12 @@ export default class Controller extends React.Component {
     updateState({getOrientation})
   }
   setViewport() {
-    const { actions, position:[longitude, latitude] } = this.props;
-    actions.setViewport({longitude, latitude});
+    const { objFileData, actions, position:[longitude, latitude] } = this.props;
+    if(objFileData) actions.setViewport({longitude, latitude});
   }
 
   render() {
-    const { actions, inputFileName, animatePause, animateReverse, viewport, leading,
+    const { actions, inputFileName, animatePause, animateReverse, viewport, leading, objFileData,
       settime, timeBegin, timeLength, secperhour, objFileName, position, getOrientation, updateState } = this.props;
     const { movesFileName } = inputFileName;
 
@@ -65,7 +65,7 @@ export default class Controller extends React.Component {
               </li></ol>
             </li>
             <li className="flex_row">
-              <button onClick={this.setViewport.bind(this)}
+              <button onClick={this.setViewport.bind(this)} disabled={objFileData?false:true}
               className="harmovis_button">Move to object position</button>
             </li>
             <li className="flex_row">
