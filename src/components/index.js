@@ -4,6 +4,13 @@ import { MovesInput, PlayButton, PauseButton, ForwardButton, ReverseButton,
   SpeedValue, SpeedRange } from 'harmoware-vis';
 import { ObjectInput } from './object-input.js';
 
+const InputNumber = ({caption,value,step,min,max,onChange}) => {
+  return(
+    <>{caption}<input type="number" value={value} step={step} min={min} max={max}
+      onChange={onChange} required className="harmovis_input_number"/></>
+  );
+};
+
 export default class Controller extends React.Component {
   updatePos(idx,e){
     const { position, updateState } = this.props;
@@ -34,23 +41,23 @@ export default class Controller extends React.Component {
             </li>
             <li className="flex_column">
               <ol><li className="flex_row">
-              longitude:<input type="number" value={position[0]} step="0.0001" min="-180" max="180"
-              onChange={this.updatePos.bind(this,0)} required className="harmovis_input_number"/>
+              <InputNumber caption="longitude:" value={position[0]} step="0.0001" min="-180" max="180"
+              onChange={this.updatePos.bind(this,0)}/>
               </li><li className="flex_row">
-              latitude:<input type="number" value={position[1]} step="0.0001" min="-90" max="90"
-              onChange={this.updatePos.bind(this,1)} required className="harmovis_input_number"/>
+              <InputNumber caption="latitude:" value={position[1]} step="0.0001" min="-90" max="90"
+              onChange={this.updatePos.bind(this,1)}/>
               </li><li className="flex_row">
-              altitude:<input type="number" value={position[2]} step="0.1"
-              onChange={this.updatePos.bind(this,2)} required className="harmovis_input_number"/>
+              <InputNumber caption="altitude:" value={position[2]} step="0.1"
+              onChange={this.updatePos.bind(this,2)}/>
               </li><li className="flex_row">
-              pitch:<input type="number" value={getOrientation[0]} step="1" min="-180" max="180"
-              onChange={this.updateOri.bind(this,0)} required className="harmovis_input_number"/>
+              <InputNumber caption="pitch:" value={getOrientation[0]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,0)}/>
               </li><li className="flex_row">
-              yaw:<input type="number" value={getOrientation[1]} step="1" min="-180" max="180"
-              onChange={this.updateOri.bind(this,1)} required className="harmovis_input_number"/>
+              <InputNumber caption="yaw:" value={getOrientation[1]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,1)}/>
               </li><li className="flex_row">
-              roll:<input type="number" value={getOrientation[2]} step="1" min="-180" max="180"
-              onChange={this.updateOri.bind(this,2)} required className="harmovis_input_number"/>
+              <InputNumber caption="roll:" value={getOrientation[2]} step="1" min="-180" max="180"
+              onChange={this.updateOri.bind(this,2)}/>
               </li></ol>
             </li>
             <li className="flex_row">
