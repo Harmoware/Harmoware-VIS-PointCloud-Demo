@@ -36,7 +36,7 @@ export default class Controller extends React.Component {
         <div className="harmovis_controller">
             <ul className="flex_list">
             <li className="flex_row">
-                <div className="harmovis_input_button_column">
+                <div className="harmovis_input_button_column" title='3D object data selection'>
                 <label htmlFor="ObjectInput">
                 3D object data selection<ObjectInput actions={actions} id="ObjectInput" updateState={updateState}/>
                 </label>
@@ -66,10 +66,10 @@ export default class Controller extends React.Component {
             </li>
             <li className="flex_row">
               <button onClick={this.setViewport.bind(this)} disabled={objFileData?false:true}
-              className="harmovis_button">Move to object position</button>
+              className="harmovis_button" title='Move to object position'>Move to object position</button>
             </li>
             <li className="flex_row">
-                <div className="harmovis_input_button_column">
+                <div className="harmovis_input_button_column" title='PointCloud data selection'>
                 <label htmlFor="MovesInput">
                 PointCloud data selection<MovesInput actions={actions} id="MovesInput"/>
                 </label>
