@@ -61,7 +61,7 @@ class App extends Container {
         data,
         getColor: x => x.color || [0,255,0,128+x.position[3]*1.28],
         sizeUnits: 'meters',
-        pointSize: 0.1,
+        pointSize: 0.05,
         onHover
       });
     });
