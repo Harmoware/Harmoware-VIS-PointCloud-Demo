@@ -54,7 +54,7 @@ class App extends Container {
   getPointCloudLayer(PointCloudData){
     return PointCloudData.map((pointCloudElements, idx)=>{
       const {pointCloud} = pointCloudElements;
-      const data = pointCloud.filter(x=>x.position);
+      const data = pointCloud;
       const onHover = this.onHover.bind(this);
       return new PointCloudLayer({
         id: 'PointCloudLayer-' + String(idx),
