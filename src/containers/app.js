@@ -1,5 +1,5 @@
 import React from 'react';
-import { PointCloudLayer, SimpleMeshLayer } from 'deck.gl';
+import { PointCloudLayer, SimpleMeshLayer, LineLayer } from 'deck.gl';
 import {
   Container, connectToHarmowareVis, HarmoVisLayers, LoadingIcon, FpsDisplay
 } from 'harmoware-vis';
@@ -24,12 +24,13 @@ class App extends Container {
   componentDidMount(){
     super.componentDidMount();
     const { actions } = this.props;
+    const { position } = this.state;
     actions.setInitialViewChange(false);
     actions.setSecPerHour(3600);
     actions.setLeading(3);
     actions.setTrailing(3);
-    actions.setViewport({longitude:136.906428,latitude:35.181453,zoom:18.5,maxZoom:25,pitch:60,maxPitch:90});
-    actions.setDefaultViewport({defaultZoom:18.6,defaultPitch:60});
+    actions.setDefaultViewport({defaultZoom:20.6,defaultPitch:30});
+    actions.setViewport({longitude:position[0],latitude:position[1],maxZoom:25,maxPitch:180,pitch:0});
   }
 
   updateState(updateData){
@@ -54,14 +55,13 @@ class App extends Container {
   getPointCloudLayer(PointCloudData){
     return PointCloudData.map((pointCloudElements, idx)=>{
       const {pointCloud} = pointCloudElements;
-      const data = pointCloud;
       const onHover = this.onHover.bind(this);
       return new PointCloudLayer({
         id: 'PointCloudLayer-' + String(idx),
-        data,
+        data: pointCloud,
         getColor: x => x.color || [0,255,0,128+x.position[3]*1.28],
         sizeUnits: 'meters',
-        pointSize: 0.05,
+        pointSize: 0.025,
         onHover
       });
     });
@@ -70,6 +70,7 @@ class App extends Container {
   render() {
     const { actions, viewport, movedData, loading } = this.props;
     const PointCloudData = movedData.filter(x=>x.pointCloud);
+    const { position } = this.state;
 
     return (
       <div>
@@ -81,12 +82,25 @@ class App extends Container {
                 this.state.objFileData ?
                 new SimpleMeshLayer({
                   id:'SimpleMeshLayer',
-                  data:[{position:this.state.position}],
+                  data:[{position}],
                   mesh:this.state.objFileData,
                   getColor:this.state.getColor,
                   getOrientation:this.state.getOrientation,
                   opacity:this.state.opacity,
                 }):null,
+                new LineLayer({
+                  id:'LineLayer',
+                  data: [
+                    {sourcePosition:[position[0],position[1],10],targetPosition:[position[0],position[1],-10],color:[255,0,0,255]},
+                    {sourcePosition:[position[0],position[1]+0.0001,0],targetPosition:[position[0],position[1]-0.0001,0],color:[0,255,0,255]},
+                    {sourcePosition:[position[0]+0.0001,position[1],0],targetPosition:[position[0]-0.0001,position[1],0],color:[0,0,255,255]},
+                  ],
+                  widthUnits: 'meters',
+                  getWidth: 0.025,
+                  widthMinPixels: 0.1,
+                  getColor: (x) => x.color || [255,255,255,255],
+                  opacity: this.state.opacity,
+                }),
                 PointCloudData.length > 0 ? this.getPointCloudLayer(PointCloudData):null,
             ]}
           />
